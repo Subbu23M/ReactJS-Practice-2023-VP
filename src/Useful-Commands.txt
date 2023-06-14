@@ -1,0 +1,11 @@
+1)To install react-router-dom-v6
+  npm install react-router-dom@6
+
+2)To install Sass
+   npm install sass --save-dev  
+
+3)To install bootstrap@V4
+  npm i bootstrap@4.3.1
+
+4)To install react-icons
+  npm i react-icons
