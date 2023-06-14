@@ -2,7 +2,9 @@ import { Data } from "../data"
 
 export const DisplayCard = ({inputValue}) => {
     const filterData = Data.filter((ele) => {
-        const{name} = ele
+        const {
+            name
+        } = ele
         return name.toLowerCase().includes(inputValue)
     })
 

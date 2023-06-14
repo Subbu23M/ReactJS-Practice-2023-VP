@@ -3,7 +3,7 @@ import {FaSearch} from 'react-icons/fa'
 import { DisplayCard } from './DisplayCard'
 
 export const SearchFilter = () => {
-    const[searchValue,setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState('')
 
     const handleSearchBox = (e) => {
         setSearchValue(e.target.value)
@@ -26,7 +26,6 @@ export const SearchFilter = () => {
                     </form>
                     <DisplayCard inputValue={searchValue}/>
                 </div>
-                
             </div>
         </div>
     )
