@@ -6,7 +6,8 @@ import 'bootstrap/dist/js/bootstrap.bundle'
 // import { App } from './App'
 // import { Provider } from 'react-redux'
 // import { store } from './redux/store'
-import {App} from './About-debounce-hook/App'
+// import {App} from './About-debounce-hook/App'
+import { App } from './Debounce-Lodash/App'
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //   <React.StrictMode>

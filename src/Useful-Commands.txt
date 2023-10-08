@@ -15,3 +15,6 @@
 
 6)To install uuid
   npm i uuid
+
+7)To install lodash
+  npm i lodash
