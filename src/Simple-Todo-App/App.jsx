@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import swal from 'sweetalert';
-import {FaTrash} from 'react-icons/fa'
+import {FaEdit, FaTrash} from 'react-icons/fa'
 import '../style/style.css'
 
 export const App = () => {
@@ -14,14 +14,30 @@ export const App = () => {
 
     // To add todos into array
     const [todosArray, setTodosArray] = useState([])
+    const[editBool,setEditBool] = useState(false)
 
     const reusableCode = () => {
-        setTodosArray([{
-            id: uuidv4(),
-            todo: inputValue
-        }, ...todosArray])
-        setInputValue('')
-        swal('Todo Added');
+        if(inputValue && editBool ){
+            const result = todosArray.map((ele) => {
+                if(ele.id === editItemId){
+                    return {
+                        ...ele,todo:inputValue
+                    }
+                }
+                return ele
+            })
+            // console.log(result);
+            setTodosArray(result)
+            setInputValue('');
+            swal('Todo Edited');
+        }else {
+            setTodosArray([{
+                id: uuidv4(),
+                todo: inputValue
+            }, ...todosArray])
+            setInputValue('')
+            swal('Todo Added');
+        }
     }
 
     const handleSubmit = (e) => {
@@ -43,6 +59,17 @@ export const App = () => {
             }
         })
         setTodosArray(filterData)
+    }
+
+    const[editItemId,setEditItemId] = useState(null)
+
+    // Logic to edit each todo
+    const handleEditTodo = (id) => {
+        const specificItem = todosArray.find((item) => item.id === id )
+        // console.log(specificItem);
+        setEditItemId(id)
+        setEditBool(true)
+        setInputValue(specificItem.todo)
     }
 
     return (
@@ -87,7 +114,10 @@ export const App = () => {
                                         {todo} - <button 
                                             className='btn mb-2 text-danger'
                                             onClick={() => handleDeleteTodo(id)}
-                                        >{<FaTrash/>}</button>
+                                        >{<FaTrash/>}</button> - <button 
+                                            className='btn mb-2 text-danger'
+                                            onClick={() => handleEditTodo(id)}
+                                        >{<FaEdit/>} </button>
                                     </h3>
                                 </div>
                             </div>
