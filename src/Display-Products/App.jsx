@@ -1,11 +1,13 @@
 import { useState } from "react"
 
 export const App = () => {
+    // Store input values in object
     const [productsArray, setProductsArray] = useState({
         productName: '',
         productPrice: ''
     })
 
+    // To make controlled input
     const handleChange = (e) => {
         setProductsArray({
             ...productsArray,
@@ -13,13 +15,18 @@ export const App = () => {
         })
     }
 
+    // To store array of objects
     const [prodArray, setProdArray] = useState([])
     const handleSubmit = (e) => {
-        e.preventDefault()
-        setProdArray([...prodArray, productsArray])
-        setProductsArray({})
+        e.preventDefault();
+        setProdArray([productsArray, ...prodArray]);
+        setProductsArray({
+            productName: '',
+            productPrice: ''
+        })
     }
 
+    // Calculate sum
     const total = prodArray.reduce((accu, obj) => {
         return accu + Number(obj.productPrice)
     }, 0)
@@ -34,6 +41,7 @@ export const App = () => {
                 <input 
                     type="text" 
                     name="productName"
+                    value={productsArray.productName}
                     className="form-control mb-2 mr-sm-2"
                     placeholder="Enter Product Name"
                     onChange={handleChange}
@@ -47,6 +55,7 @@ export const App = () => {
                     <input 
                         type="text" 
                         name="productPrice" 
+                        value={productsArray.productPrice}
                         className="form-control"
                         placeholder="Enter Product Price"
                         onChange={handleChange}
